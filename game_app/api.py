@@ -1,6 +1,8 @@
 from ninja import NinjaAPI, Schema
+from typing import List
 from .services import select_randon_data
-from .schemas import PokemonSchema, LinuxSchema
+from .schemas import PokemonSchema, LinuxSchema, JogadorSchema
+from .models import Pokemon, DistroLinux, Jogador
 
 api = NinjaAPI()
 
@@ -31,10 +33,22 @@ def buscar_nome_sorteado(request):
 
 
 @api.get('/verificar')
-def verificar_por_nome(request, nome_search: str or None):
+def verificar_nome(request, nome_search: str or None):
     if Pokemon.objects.filter(nome=nome_search):
         return {'resultado': 'Pokemon'}
     elif DistroLinux.objects.filter(nome=nome_search):
         return {'resultado': 'Distribuição Linux'}
     else:
-        return {'resultado': 'não localizado'}
+        return {'resultado': 'Não Localizado'}
+
+
+@api.post('/jogador', response=JogadorSchema)
+def salvar_jogador(request, payload: JogadorSchema):
+    jogador = Jogador.objects.create(**payload.dict())
+    return jogador
+
+
+@api.get('/jogadores', response=List[JogadorSchema])
+def buscar_jogadores(request):
+    jogadores = Jogador.objects.all()
+    return jogadores

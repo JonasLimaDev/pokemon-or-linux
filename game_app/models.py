@@ -18,7 +18,7 @@ class Pokemon(models.Model):
 
 
 class Jogador(models.Model):
-    nome = models.CharField(max_length=100, null=False, blank=False, unique=True)
+    nome = models.CharField(max_length=100, null=False, blank=False)
     pontuacao = models.IntegerField( null=False, blank=False)
 
     def __str__(self):
