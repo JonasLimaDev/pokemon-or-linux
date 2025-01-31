@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{%load static%}
+
+
+{% block main %}
+<div x-data="getData" x-init="sorteiaNome();">
+<div class="card position-absolute top-50 start-50 translate-middle text-center my-2 py-2 shadow-lg bg-light bg-opacity-50   " style="width: 32rem;
+">
+  <div class="card-body aligment-itens-center ">
+    <div class="card py-4 m-2 border bg-secondary bg-opacity-75 shadow ">
+        <h2 class="card-title" x-text="nome_sorteado"></h2>
+        <h2 class="card-title">Este nome é de:</h2>
+    </div>
+    <div class="py-2 my-2">
+        <button x-on:click="distro_click=true;pontuar();" class="btn btn-lg btn-primary shadow w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Uma Distribuição Linux</button>
+    </div>
+    <div class=" py-2 my-2">
+        <button x-on:click="pokemon_click=true;pontuar();" class="btn btn-lg btn-primary shadow w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">Um Pokemon</button>
+    </div>
+  </div>
+  
+</div>
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade " id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content ">
+        <div class="modal-header ">
+          <h1 class="modal-title fs-2 mx-auto " id="exampleModalLabel">Resultado</h1>
+        </div>
+        <div class="modal-body text-center">
+          
+          <template x-if="pontuacao.resposta == 'Você Errou!!!'">
+            <h3 x-text="pontuacao.resposta" class="text-danger"></h3>
+        </template>
+        <div class="modal-body text-center">
+          <template x-if="pontuacao.resposta == 'Você Acertou!!!'">
+            <h3 x-text="pontuacao.resposta" class="text-success"></h3>
+        </template>
+
+        <template x-if="resultado == 'Distribuição Linux'">
+        <h4><span x-text="nome_sorteado"></span> é uma <span x-text="resultado"></span></h4>
+        </template>
+
+        <template x-if="resultado == 'Pokemon'">
+          <h4><span x-text="nome_sorteado"></span> é um <span x-text="resultado"></span></h4>
+          </template>
+          <div class="col-md-6 col-12  mx-auto my-auto ">
+            <img :src="info_resposta.imagem" class="img-fluid py-auto border-none mx-auto d-block" alt="..." >
+        </div>
+
+        </div>
+        <div class="modal-footer d-grid gap-2 d-md-block">
+          <button @click="sorteiaNome()" data-bs-dismiss="modal" class="btn btn-primary w-50">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
+{% block javascript %}
+<script src="{%static 'js/scripts_game.js'%}"></script>
+{% endblock%}

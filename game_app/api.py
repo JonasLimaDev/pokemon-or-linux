@@ -3,6 +3,9 @@ from typing import List
 from .services import select_randon_data
 from .schemas import PokemonSchema, LinuxSchema, JogadorSchema
 from .models import Pokemon, DistroLinux, Jogador
+from random import randint
+from django.shortcuts import get_object_or_404
+
 
 api = NinjaAPI()
 
@@ -15,7 +18,7 @@ def buscar_pokemon(request, pokemon_name: str):
 
 @api.get('/linux/{linux_name}', response=LinuxSchema)
 def buscar_linux(request, linux_name: str):
-    linux = get_object_or_404(Dis,nome=linux_name)
+    linux = get_object_or_404(DistroLinux,nome=linux_name)
     return linux
 
 
@@ -23,8 +26,8 @@ def buscar_linux(request, linux_name: str):
 def buscar_nome_sorteado(request):
     pokemons = Pokemon.objects.all()
     distros = DistroLinux.objects.all()
-    positional_data = randint(0,6)
-    if positional_data % 2 == 0:
+    positional_data = randint(0,1)
+    if positional_data == 0:
         selected_distro  = select_randon_data(distros)
         return {'name': selected_distro.nome}
     else:

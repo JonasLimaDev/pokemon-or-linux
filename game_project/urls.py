@@ -23,7 +23,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="base.html")),
+    path("", TemplateView.as_view(template_name="base.html"),name='home_page'),
     path('admin/', admin.site.urls),
     path('game/', include('game_app.urls')),
 ]
