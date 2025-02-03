@@ -1,0 +1,22 @@
+<div class="modal-body text-center">
+  <template x-if="pontuacao.resposta == 'Você Errou!!!'">
+    <h3 x-text="pontuacao.resposta" class="text-danger"></h3>
+  </template>
+  <template x-if="pontuacao.resposta == 'Você Acertou!!!'">
+    <h3 x-text="pontuacao.resposta" class="text-success"></h3>
+  </template>
+
+  <template x-if="resultado == 'Distribuição Linux'">
+    <h4><span x-text="nome_sorteado"></span> é uma <span x-text="resultado"></span></h4>
+  </template>
+
+  <template x-if="resultado == 'Pokemon'">
+    <h4><span x-text="nome_sorteado"></span> é um <span x-text="resultado"></span></h4>
+  </template>
+  <div class="col-md-6 col-12  mx-auto my-auto ">
+    <img :src="info_resposta.imagem" class="img-fluid py-auto border-none mx-auto d-block" alt="...">
+  </div>
+  <div class="modal-footer d-grid gap-2 d-md-block">
+    <button @click="sorteiaNome()" data-bs-dismiss="modal" class="btn btn-primary w-50">OK</button>
+  </div>
+</div>
