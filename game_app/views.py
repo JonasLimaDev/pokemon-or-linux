@@ -10,5 +10,8 @@ from .models import Pokemon, DistroLinux
 class GameView(TemplateView):
     template_name = 'game_app/game.html'
 
+
+class TopJogadoresView(TemplateView):
+    template_name = 'game_app/top_jogadores.html'
 # def listar_pokemons(request):
 #     return render(request, 'app/lista_pokemons.html')

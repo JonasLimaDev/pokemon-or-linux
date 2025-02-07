@@ -9,7 +9,7 @@ const getData = () => ({
     
     nome_sorteado: "",
     rodadas: 0,
-    jogo_finalizado: true,
+    jogo_finalizado: false,
     pokemon_click: false,
     distro_click: false,
     pontuacao:{
@@ -86,10 +86,6 @@ const getData = () => ({
         }
         this.pokemon_click = false;
         this.distro_click = false;
-        // this.rodadas++;
-        // if(this.rodadas === 5){
-        //   this.jogo_finalizado = true
-        // }
     },
 
    async salvar_jogador(){

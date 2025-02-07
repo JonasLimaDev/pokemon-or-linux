@@ -1,5 +1,5 @@
 from .models import DistroLinux, Pokemon, Jogador
-from ninja import ModelSchema
+from ninja import ModelSchema, Schema
 
 
 class LinuxSchema(ModelSchema):
@@ -17,3 +17,6 @@ class JogadorSchema(ModelSchema):
     class Meta:
         model = Jogador
         fields = ['nome','pontuacao']
+
+class UploadSchema(Schema):
+    nome: str

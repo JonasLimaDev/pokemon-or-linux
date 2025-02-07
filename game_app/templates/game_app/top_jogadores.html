@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{%load static%}
+
+
+{% block main %}
+<div x-data="getData" x-init="getTopPlayers();">
+    <div class="card position-absolute top-50 start-50 translate-middle text-center my-2 py-2 shadow-lg bg-light bg-opacity-50   "
+        style="width: 32rem;">
+        <div class="card-body aligment-itens-center">
+
+            <div class="table-responsive py-auto my-auto">
+                <table class="table  table-striped table-hover py-2 table-secondary shadow ">
+                    <thead class="table-dark" style="opacity:90% !important;">
+                        <tr>
+                            <th scope="col" colspan="3">
+                                <h2 class="card-title">10 Melhores Jogadores</h2>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Pontuação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template x-for="(jogador, index) in topJogadores">
+                            <tr>
+                                <th scope="row" x-text="index+1"></th>
+
+                                <th scope="row" x-text="jogador.nome"></th>
+                                <th x-text="jogador.pontuacao">1</th>
+                            </tr>
+                        </template>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{%endblock%}
+{% block javascript %}
+<script src="{%static 'js/scripts_jogadores.js'%}"></script>
+{% endblock%}
